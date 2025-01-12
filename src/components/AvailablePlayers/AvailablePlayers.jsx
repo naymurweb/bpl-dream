@@ -1,7 +1,13 @@
+import { useEffect, useState } from "react";
 import Player from "../Player/Player";
 
-
 const AvailablePlayers = () => {
+  const [players, setPlayers] = useState([]);
+  useEffect(() => {
+    fetch("players.json")
+      .then((res) => res.json())
+      .then((data) => setPlayers(data));
+  }, []);
   return (
     <div className="my-10">
       <div className="md:flex text-center md:justify-between">
@@ -12,9 +18,9 @@ const AvailablePlayers = () => {
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 my-7">
-        <Player/>
-        <Player/>
-        <Player/>
+        {players.map((player) => (
+          <Player key={player.playerId} player={player} />
+        ))}
       </div>
     </div>
   );
