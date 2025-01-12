@@ -1,4 +1,5 @@
-function Header() {
+import PropTypes from "prop-types";
+function Header({coin}) {
   const navLists = ["Home", "Fixture", "Teams", "Schedules"];
   return (
     <header>
@@ -46,12 +47,16 @@ function Header() {
           </ul>
         </div>
         <div className="navbar-end">
-        <button className="btn btn-outline font-bold"><span>0</span>Coin<img src="/src/assets/images/dollar.png" alt="" /></button>
+        <button className="btn btn-outline font-bold"><span>{coin}</span>Coin<img src="/src/assets/images/dollar.png" alt="" /></button>
 
         </div>
       </div>
     </header>
   );
+}
+
+Header.propTypes={
+  coin:PropTypes.number.isRequired
 }
 
 export default Header;

@@ -1,4 +1,5 @@
-const Hero = () => {
+import PropTypes from "prop-types";
+const Hero = ({ handleCoin }) => {
   return (
     <div
       className="my-10 bg-black hero rounded-xl py-10"
@@ -18,13 +19,17 @@ const Hero = () => {
           <p className="mb-5 text-gray-400 text-2xl">
             Beyond Boundaries Beyond Limits
           </p>
-          <button className="btn btn-warning font-bold">
+          <button onClick={handleCoin} className="btn btn-warning font-bold">
             Claim Free Credit
           </button>
         </div>
       </div>
     </div>
   );
+};
+
+Hero.propTypes = {
+  handleCoin: PropTypes.func.isRequired,
 };
 
 export default Hero;
