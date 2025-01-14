@@ -1,6 +1,6 @@
 import { FaUser, FaFontAwesomeFlag } from "react-icons/fa";
 import PropTypes from "prop-types";
-const Player = ({ player }) => {
+const Player = ({ player,handleSelectPlayer}) => {
   const { image, name, country, biddingPrice, bowlingType, role } = player;
   return (
     <div className="card bg-base-100  shadow-xl">
@@ -30,7 +30,7 @@ const Player = ({ player }) => {
           <span className="flex font-bold items-center">
             Price: ${biddingPrice}
           </span>
-          <button className="btn btn-sm text-gray-00">Choose Player</button>
+          <button onClick={()=>handleSelectPlayer(player)} className="btn btn-sm text-gray-00">Choose Player</button>
         </div>
       </div>
     </div>
