@@ -6,7 +6,7 @@ import Header from "./components/Header/Header";
 import Hero from "./components/Hero/Hero";
 import GroupBtn from "./components/GroupBtn/GroupBtn";
 import Select from "./components/Select/Select";
-import { ToastContainer, toast } from "react-toastify";
+import { Bounce, ToastContainer, toast } from "react-toastify";
 
 function App() {
   const [coin, setCoin] = useState(0);
@@ -27,14 +27,46 @@ function App() {
     if (selectPlayerPrice < coin) {
       setCoin(coin - selectPlayerPrice);
       setSelectPlayers([...selectPlayers, player]);
+      toast.success(` Congrates !! ${player.name} added `, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+        });
     } else {
-      toast("Coin not available!");
+      toast.error('Coin not available!', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+        });
       return;
     }
   };
   const handleRemove = (id) => {
     const players = selectPlayers.filter((player) => player.playerId !== id);
     setSelectPlayers(players);
+    toast.warn('player removed!', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+      });
   };
   return (
     <div>
@@ -48,7 +80,7 @@ function App() {
             handleSelectPlayer={handleSelectPlayer}
           />
         ) : (
-          <Select selectPlayers={selectPlayers} handleRemove={handleRemove} />
+          <Select selectPlayers={selectPlayers} handleRemove={handleRemove} setRenderType={setRenderType} />
         )}
       </main>
       <ToastContainer />
